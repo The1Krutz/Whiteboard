@@ -33,7 +33,7 @@ namespace Tests
             var result = implementation.ArrayIntersection(initial1, initial2).ToList();
 
             Assert.NotNull(result);
-            Assert.Equal(expected.Count(), result.Count());
+            Assert.Equal(expected.Count(), result.Count);
 
             Assert.True(expected.All(z => result.Contains(z)));
             Assert.True(result.All(z => expected.Contains(z)));

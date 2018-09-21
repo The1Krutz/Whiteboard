@@ -12,16 +12,22 @@ namespace SanDiego3_Answers
             int letterCount = 0;
             Dictionary<char, int> myFirstDictionary = new Dictionary<char, int>();
 
-            // removes all spaces from the string
-            for (int i = 0; i < inputString.Length; i++)
-            {
-                if (inputString[i] == ' ')
+            /*
+             * commenting out some code because this solution never worked, and causes the tests to fail
+             * -Thomas
+             * 
+                // remove all spaces
+                for (int i = 0; i < inputString.Length; i++)
                 {
-                    inputString = inputString.Remove(i, 1);
+                    if (inputString[i] == ' ')
+                    {
+                        inputString = inputString.Remove(i, 1);
 
+                    }
                 }
-            }
-            inputString = inputString.ToLower();
+                // lowercasing becuase reasons?
+                inputString = inputString.ToLower();
+            */
             for (int i = 0; i < inputString.Length; i++)
             {
                 letterCount = 0;

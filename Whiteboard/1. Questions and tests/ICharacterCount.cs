@@ -34,11 +34,13 @@ namespace Tests
 
         [Theory]
         [MemberData(nameof(Data))]
-        public void CharacterCount_SimpleWord(string initial, Dictionary<char, int> expected)
+        public void CharacterCount_Test(string initial, Dictionary<char, int> expected)
         {
             var result = implementation.CharacterCount(initial);
 
             Assert.NotNull(result);
+
+            Assert.Equal(expected.Count, result.Count);
 
             Assert.True(expected.All(z => result[z.Key] == z.Value));
             Assert.True(result.All(z => expected[z.Key] == z.Value));
