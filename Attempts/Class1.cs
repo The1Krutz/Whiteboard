@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Whiteboard
+namespace Attempts
 {
     public class Class1
     {
