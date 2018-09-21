@@ -1,68 +1,63 @@
 ﻿
-namespace SanDiego3_Answers
+namespace SanDiego3
 {
     using Questions;
     using System.Collections.Generic;
     using Tests;
 
-    public class Justin_CharacterCount : ICharacterCount
+    namespace Justin
     {
-        public Dictionary<char, int> CharacterCount(string inputString)
+        public class CharacterCount : CharacterCountTest
         {
-            int letterCount = 0;
-            Dictionary<char, int> myFirstDictionary = new Dictionary<char, int>();
+            public override Dictionary<char, int> GetCharacterCount(string inputString)
+            {
+                int letterCount = 0;
+                Dictionary<char, int> myFirstDictionary = new Dictionary<char, int>();
 
-            /*
-             * commenting out some code because this solution never worked, and causes the tests to fail
-             * -Thomas
-             * 
-                // remove all spaces
+                /*
+                 * commenting out some code because this solution never worked, and causes the tests to fail
+                 * -Thomas
+                 *
+                    // remove all spaces
+                    for (int i = 0; i < inputString.Length; i++)
+                    {
+                        if (inputString[i] == ' ')
+                        {
+                            inputString = inputString.Remove(i, 1);
+
+                        }
+                    }
+                    // lowercasing becuase reasons?
+                    inputString = inputString.ToLower();
+                */
                 for (int i = 0; i < inputString.Length; i++)
                 {
-                    if (inputString[i] == ' ')
+                    letterCount = 0;
+                    for (int j = 0; j < inputString.Length; j++)
                     {
-                        inputString = inputString.Remove(i, 1);
+
+                        if (inputString[i] == inputString[j])
+                        {
+                            letterCount++;
+                        }
+
 
                     }
-                }
-                // lowercasing becuase reasons?
-                inputString = inputString.ToLower();
-            */
-            for (int i = 0; i < inputString.Length; i++)
-            {
-                letterCount = 0;
-                for (int j = 0; j < inputString.Length; j++)
-                {
-
-                    if (inputString[i] == inputString[j])
+                    if (myFirstDictionary.ContainsKey(inputString[i]))
                     {
-                        letterCount++;
+                        continue;
                     }
-
-
+                    myFirstDictionary.Add(inputString[i], letterCount);
                 }
-                if (myFirstDictionary.ContainsKey(inputString[i]))
-                {
-                    continue;
-                }
-                myFirstDictionary.Add(inputString[i], letterCount);
+
+                // I commented this becuase it's pointless -Thomas
+                // foreach (char letter in myFirstDictionary.Keys)
+                // {
+                //     Console.WriteLine("{0}: {1}", letter, myFirstDictionary[letter]);
+                // }
+
+                return myFirstDictionary; // I added this line so this code fit the method signature -Thomas
             }
-
-            // I commented this becuase it's pointless -Thomas
-            // foreach (char letter in myFirstDictionary.Keys)
-            // {
-            //     Console.WriteLine("{0}: {1}", letter, myFirstDictionary[letter]);
-            // }
-
-            return myFirstDictionary; // I added this line so this code fit the method signature -Thomas
-        }
-    }
-
-    public class Justin_CharacterCountTests : CharacterCountTest
-    {
-        public Justin_CharacterCountTests()
-        {
-            implementation = new Justin_CharacterCount();
         }
     }
 }

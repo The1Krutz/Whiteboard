@@ -1,53 +1,43 @@
 ﻿
-namespace Sample_Answers
+namespace Sample
 {
     using Questions;
     using Tests;
     using System.Collections.Generic;
     using System.Linq;
 
-    public class Sample1_ArrayIntersection : IArrayIntersection
+    namespace Sample
     {
-        public IEnumerable<int> ArrayIntersection(int[] inArr1, int[] inArr2)
+        public class ArrayIntersection : ArrayIntersectionTest
         {
-            var temp = new List<int>();
-
-            foreach (var i in inArr1)
+            public override IEnumerable<int> CalculateArrayIntersection(int[] inArr1, int[] inArr2)
             {
-                foreach (var j in inArr2)
+                var temp = new List<int>();
+
+                foreach (var i in inArr1)
                 {
-                    if (i == j && !temp.Contains(i))
+                    foreach (var j in inArr2)
                     {
-                        temp.Add(i);
+                        if (i == j && !temp.Contains(i))
+                        {
+                            temp.Add(i);
+                        }
                     }
                 }
+
+                return temp;
             }
-
-            return temp;
         }
     }
 
-    public class Sample2_ArrayIntersection : IArrayIntersection
+    namespace Sample2
     {
-        public IEnumerable<int> ArrayIntersection(int[] inArr1, int[] inArr2)
+        public class ArrayIntersection : ArrayIntersectionTest
         {
-            return inArr1.Intersect(inArr2).Distinct();
-        }
-    }
-    
-    public class Sample1_ArrayIntersectionTests : ArrayIntersectionTest
-    {
-        public Sample1_ArrayIntersectionTests()
-        {
-            implementation = new Sample1_ArrayIntersection();
-        }
-    }
-
-    public class Sample2_ArrayIntersectionTests : ArrayIntersectionTest
-    {
-        public Sample2_ArrayIntersectionTests()
-        {
-            implementation = new Sample2_ArrayIntersection();
+            public override IEnumerable<int> CalculateArrayIntersection(int[] inArr1, int[] inArr2)
+            {
+                return inArr1.Intersect(inArr2).Distinct();
+            }
         }
     }
 }

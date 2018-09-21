@@ -9,7 +9,7 @@
          * Order of the dictionary does not matter
          * ie: "test" should return {'t':2, 'e':1, 's':1}
          */
-        Dictionary<char, int> CharacterCount(string inString);
+        Dictionary<char, int> GetCharacterCount(string inString);
     }
 }
 
@@ -20,9 +20,9 @@ namespace Tests
     using System.Linq;
     using Xunit;
 
-    public abstract class CharacterCountTest
+    public abstract class CharacterCountTest : ICharacterCount
     {
-        protected ICharacterCount implementation;
+        public abstract Dictionary<char, int> GetCharacterCount(string inString);
 
         public static TheoryData<string, Dictionary<char, int>> Data =>
             new TheoryData<string, Dictionary<char, int>>
@@ -32,14 +32,14 @@ namespace Tests
                     {"test TEST", new Dictionary<char, int> { {'t', 2 }, {'e', 1 }, {'s', 1 }, {' ', 1 }, {'T', 2 }, {'E', 1 }, {'S', 1 } } }
                 };
 
+
         [Theory]
         [MemberData(nameof(Data))]
-        public void CharacterCount_Test(string initial, Dictionary<char, int> expected)
+        public void Test(string initial, Dictionary<char, int> expected)
         {
-            var result = implementation.CharacterCount(initial);
+            var result = GetCharacterCount(initial);
 
             Assert.NotNull(result);
-
             Assert.Equal(expected.Count, result.Count);
 
             Assert.True(expected.All(z => result[z.Key] == z.Value));

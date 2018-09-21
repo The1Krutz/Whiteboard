@@ -1,37 +1,32 @@
 ﻿
-namespace Sample_Answers
+namespace Sample
 {
     using Questions;
     using System.Collections.Generic;
     using Tests;
 
-    public class Sample_CharacterCount : ICharacterCount
+    namespace Sample
     {
-        public Dictionary<char, int> CharacterCount(string inString)
+        public class CharacterCount : CharacterCountTest
         {
-            var temp = new Dictionary<char, int>();
-
-            foreach (var c in inString)
+            public override Dictionary<char, int> GetCharacterCount(string inString)
             {
-                if (temp.ContainsKey(c))
+                var temp = new Dictionary<char, int>();
+
+                foreach (var c in inString)
                 {
-                    temp[c]++;
+                    if (temp.ContainsKey(c))
+                    {
+                        temp[c]++;
+                    }
+                    else
+                    {
+                        temp.Add(c, 1);
+                    }
                 }
-                else
-                {
-                    temp.Add(c, 1);
-                }
+
+                return temp;
             }
-
-            return temp;
-        }
-    }
-
-    public class Sample_CharacterCountTests : CharacterCountTest
-    {
-        public Sample_CharacterCountTests()
-        {
-            implementation = new Sample_CharacterCount();
         }
     }
 }
