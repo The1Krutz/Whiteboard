@@ -18,8 +18,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="4. Bragg 5 answers\" />
-  </ItemGroup>
-
 </Project>
