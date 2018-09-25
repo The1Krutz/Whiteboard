@@ -15,18 +15,26 @@ namespace Tests
     using Questions;
     using Xunit;
 
-    public abstract class DivisionTest : IQuestion
+    public abstract class DivisionTest : IDivision
     {
-        public abstract bool signature(string input);
+        public abstract int Division(int numerator, int denominator);
 
         [Theory]
-        [InlineData("abcd", true)]
-        [InlineData("plant", true)]
-        [InlineData("potato", false)]
-        [InlineData("hello", false)]
-        public void Test(string input, bool expected)
+        // divide evenly
+        [InlineData(4, 1, 4)]
+        [InlineData(2, 2, 1)]
+        [InlineData(9, 3, 3)]
+        // don't divide evenly
+        [InlineData(7, 3, 2)]
+        [InlineData(4, 3, 1)]
+        [InlineData(5, 2, 2)]
+        public void Test(int numerator, int denominator, int expected)
         {
-            Assert.Equal(expected, signature(input));
+            Assert.Equal(expected, Division(numerator, denominator));
         }
+
+        /**
+         * add some failure cases for negative numbers and zero
+         */
     }
 }

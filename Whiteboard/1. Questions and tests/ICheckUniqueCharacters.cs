@@ -6,7 +6,7 @@
          * Write a function that accepts a string, and returns whether the characters are all unique
          * ie: "hello" will return false, and "plant" will return true
          */
-        bool AreAllCharactersUnique(string input);
+        bool CheckUniqueCharacters(string input);
     }
 }
 
@@ -17,7 +17,7 @@ namespace Tests
 
     public abstract class CheckUniqueCharactersTest : ICheckUniqueCharacters
     {
-        public abstract bool AreAllCharactersUnique(string input);
+        public abstract bool CheckUniqueCharacters(string input);
 
         [Theory]
         [InlineData("abcd", true)]
@@ -26,7 +26,7 @@ namespace Tests
         [InlineData("hello", false)]
         public void Test(string input, bool expected)
         {
-            Assert.Equal(expected, AreAllCharactersUnique(input));
+            Assert.Equal(expected, CheckUniqueCharacters(input));
         }
     }
 }

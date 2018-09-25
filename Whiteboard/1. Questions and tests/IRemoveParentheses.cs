@@ -6,7 +6,7 @@
          * Write a function that accepts a string, removes all characters between parentheses (but not the parentheses), then returns the modified string
          * ie: "one (two) three" should return "one () three"
          */
-        string RemoveParentheses(string inString);
+        string RemoveParentheses(string input);
     }
 }
 
@@ -15,18 +15,17 @@ namespace Tests
     using Questions;
     using Xunit;
 
-    public abstract class RemoveParenthesesTest : IQuestion
+    public abstract class RemoveParenthesesTest : IRemoveParentheses
     {
-        public abstract bool signature(string input);
+        public abstract string RemoveParentheses(string input);
 
         [Theory]
-        [InlineData("abcd", true)]
-        [InlineData("plant", true)]
-        [InlineData("potato", false)]
-        [InlineData("hello", false)]
-        public void Test(string input, bool expected)
+        [InlineData("one( two )three", "one()three")]
+        [InlineData("one()three", "one()three")]
+        [InlineData("(one two three)", "()")]
+        public void Test(string input, string expected)
         {
-            Assert.Equal(expected, signature(input));
+            Assert.Equal(expected, RemoveParentheses(input));
         }
     }
 }

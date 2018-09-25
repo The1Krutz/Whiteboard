@@ -1,35 +1,33 @@
-﻿
-namespace SanDiego3
+﻿namespace SanDiego3
 {
-    using Questions;
-    using System.Collections.Generic;
     using Tests;
 
     namespace Justin
     {
-        public class CharacterCount : CharacterCountTest
+        using System.Collections.Generic;
+
+        /**
+         * made class private to hide it from the tests
+         */
+        class Character_Count : CharacterCountTest
         {
-            public override Dictionary<char, int> GetCharacterCount(string inputString)
+            public override Dictionary<char, int> CharacterCount(string inputString)
             {
                 int letterCount = 0;
                 Dictionary<char, int> myFirstDictionary = new Dictionary<char, int>();
 
-                /*
-                 * commenting out some code because this solution never worked, and causes the tests to fail
-                 * -Thomas
-                 *
-                    // remove all spaces
-                    for (int i = 0; i < inputString.Length; i++)
+                // remove all spaces
+                for (int i = 0; i < inputString.Length; i++)
+                {
+                    if (inputString[i] == ' ')
                     {
-                        if (inputString[i] == ' ')
-                        {
-                            inputString = inputString.Remove(i, 1);
+                        inputString = inputString.Remove(i, 1);
 
-                        }
                     }
-                    // lowercasing becuase reasons?
-                    inputString = inputString.ToLower();
-                */
+                }
+                // lowercasing becuase reasons?
+                inputString = inputString.ToLower();
+
                 for (int i = 0; i < inputString.Length; i++)
                 {
                     letterCount = 0;

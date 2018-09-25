@@ -9,7 +9,7 @@
          * Find all the elements of [1, n] inclusive that do not appear in this array.
          * ie: [4,3,2,7,8,2,3,1] should return [5,6]
          */
-        IEnumerable<int> FindMissingNumbers(int[] input);
+        IEnumerable<int> ArrayMissingNumber(int[] input);
     }
 }
 
@@ -22,7 +22,7 @@ namespace Tests
 
     public abstract class ArrayMissingNumberTest : IArrayMissingNumber
     {
-        public abstract IEnumerable<int> FindMissingNumbers(int[] input);
+        public abstract IEnumerable<int> ArrayMissingNumber(int[] input);
 
         public static TheoryData<int[], List<int>> Data =>
             new TheoryData<int[], List<int>>
@@ -35,14 +35,15 @@ namespace Tests
 
         [Theory]
         [MemberData(nameof(Data))]
-        public void Test(int[] initial, List<int> expected)
+        public void Test(int[] input, List<int> expected)
         {
-            var result = FindMissingNumbers(initial).ToList();
+            var result = ArrayMissingNumber(input).ToList();
 
             Assert.NotNull(result);
             Assert.Equal(expected.Count, result.Count);
 
-            Assert.All(result, z => Assert.Contains(z, expected));
+            Assert.True(expected.All(z => result.Contains(z)));
+            Assert.True(result.All(z => expected.Contains(z)));
         }
     }
 }

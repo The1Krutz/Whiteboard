@@ -9,7 +9,7 @@
          * Order of the dictionary does not matter
          * ie: "test" should return {'t':2, 'e':1, 's':1}
          */
-        Dictionary<char, int> GetCharacterCount(string inString);
+        Dictionary<char, int> CharacterCount(string input);
     }
 }
 
@@ -22,7 +22,7 @@ namespace Tests
 
     public abstract class CharacterCountTest : ICharacterCount
     {
-        public abstract Dictionary<char, int> GetCharacterCount(string inString);
+        public abstract Dictionary<char, int> CharacterCount(string input);
 
         public static TheoryData<string, Dictionary<char, int>> Data =>
             new TheoryData<string, Dictionary<char, int>>
@@ -35,9 +35,9 @@ namespace Tests
 
         [Theory]
         [MemberData(nameof(Data))]
-        public void Test(string initial, Dictionary<char, int> expected)
+        public void Test(string input, Dictionary<char, int> expected)
         {
-            var result = GetCharacterCount(initial);
+            var result = CharacterCount(input);
 
             Assert.NotNull(result);
             Assert.Equal(expected.Count, result.Count);

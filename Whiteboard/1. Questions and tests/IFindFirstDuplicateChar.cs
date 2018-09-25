@@ -6,7 +6,7 @@
          * Write a function that accepts a single string, and returns the first duplicated character in the string.
          * ie: 'abcdc' should return 'c', and 'abcdbc' should return 'b'
          */
-        string FindFirstDuplicateChar(string inString);
+        string FindFirstDuplicateChar(string input);
     }
 }
 
@@ -15,18 +15,17 @@ namespace Tests
     using Questions;
     using Xunit;
 
-    public abstract class FindFirstDuplicateCharacterTest : IQuestion
+    public abstract class FindFirstDuplicateCharTest : IFindFirstDuplicateChar
     {
-        public abstract bool signature(string input);
+        public abstract string FindFirstDuplicateChar(string input);
 
         [Theory]
-        [InlineData("abcd", true)]
-        [InlineData("plant", true)]
-        [InlineData("potato", false)]
-        [InlineData("hello", false)]
-        public void Test(string input, bool expected)
+        [InlineData("abcdMddeeeee", "d" )] // has duplicate
+        [InlineData("abcdefghijkl", "")] // has no duplicate
+        [InlineData("", "")] // empty string
+        public void Test(string input, string expected)
         {
-            Assert.Equal(expected, signature(input));
+            Assert.Equal(expected, FindFirstDuplicateChar(input));
         }
     }
 }

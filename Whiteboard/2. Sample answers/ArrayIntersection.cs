@@ -1,22 +1,20 @@
-﻿
-namespace Sample
+﻿namespace Sample
 {
-    using Questions;
     using Tests;
-    using System.Collections.Generic;
-    using System.Linq;
 
     namespace Sample
     {
-        public class ArrayIntersection : ArrayIntersectionTest
+        using System.Collections.Generic;
+
+        public class Array_Intersection : ArrayIntersectionTest
         {
-            public override IEnumerable<int> CalculateArrayIntersection(int[] inArr1, int[] inArr2)
+            public override IEnumerable<int> ArrayIntersection(int[] input1, int[] input2)
             {
                 var temp = new List<int>();
 
-                foreach (var i in inArr1)
+                foreach (var i in input1)
                 {
-                    foreach (var j in inArr2)
+                    foreach (var j in input2)
                     {
                         if (i == j && !temp.Contains(i))
                         {
@@ -32,11 +30,14 @@ namespace Sample
 
     namespace Sample2
     {
-        public class ArrayIntersection : ArrayIntersectionTest
+        using System.Collections.Generic;
+        using System.Linq;
+
+        public class Array_Intersection : ArrayIntersectionTest
         {
-            public override IEnumerable<int> CalculateArrayIntersection(int[] inArr1, int[] inArr2)
+            public override IEnumerable<int> ArrayIntersection(int[] input1, int[] input2)
             {
-                return inArr1.Intersect(inArr2).Distinct();
+                return input1.Intersect(input2).Distinct();
             }
         }
     }

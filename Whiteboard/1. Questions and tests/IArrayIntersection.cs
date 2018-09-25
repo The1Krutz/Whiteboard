@@ -8,7 +8,7 @@
          * Write a function that accepts two int arrays, and returns a single int list/array containing only numbers that are present in both arrays (an intersection of the two arrays)
          * ie: [1,2,3], [2,3,4] should return [2,3]
          */
-        IEnumerable<int> CalculateArrayIntersection(int[] inArr1, int[] inArr2);
+        IEnumerable<int> ArrayIntersection(int[] input1, int[] input2);
     }
 }
 
@@ -21,7 +21,7 @@ namespace Tests
 
     public abstract class ArrayIntersectionTest : IArrayIntersection
     {
-        public abstract IEnumerable<int> CalculateArrayIntersection(int[] inArr1, int[] inArr2);
+        public abstract IEnumerable<int> ArrayIntersection(int[] input1, int[] input2);
 
         [Theory]
         [InlineData(new[] { 1, 2, 3 }, new[] { 2, 3, 4 }, new[] { 2, 3 })] // some common elements
@@ -29,9 +29,9 @@ namespace Tests
         [InlineData(new[] { 1, 2, 3 }, new int[] { }, new int[] { })] // one empty param
         [InlineData(new int[] { }, new int[] { }, new int[] { })] // two empty params
         [InlineData(new[] { 1, 2, 3 }, new int[] { 4, 5, 6 }, new int[] { })] // no empty, no common elements
-        public void Test(int[] initial1, int[] initial2, int[] expected)
+        public void Test(int[] input1, int[] input2, int[] expected)
         {
-            var result = CalculateArrayIntersection(initial1, initial2).ToList();
+            var result = ArrayIntersection(input1, input2).ToList();
 
             Assert.NotNull(result);
             Assert.Equal(expected.Count(), result.Count);

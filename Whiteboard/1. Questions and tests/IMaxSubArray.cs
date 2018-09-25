@@ -6,7 +6,7 @@
          * Given an array of numbers, find the contiguous sub-array with the largest value.
          * ie: given [-2,1,-3,4,-1,2,1,-5,4], the contiguous subarray [4, -1, 2, 1] has the largest sum = 6.
          */
-        int MaxSubArray(int[] nums);
+        int MaxSubArray(int[] input);
     }
 }
 
@@ -15,18 +15,18 @@ namespace Tests
     using Questions;
     using Xunit;
 
-    public abstract class MaxSubArrayTest : IQuestion
+    public abstract class MaxSubArrayTest : IMaxSubArray
     {
-        public abstract bool signature(string input);
+        public abstract int MaxSubArray(int[] input);
 
         [Theory]
-        [InlineData("abcd", true)]
-        [InlineData("plant", true)]
-        [InlineData("potato", false)]
-        [InlineData("hello", false)]
-        public void Test(string input, bool expected)
+        [InlineData(new[] { 1, 2 }, 3)] // simple
+        [InlineData(new[] { 1, 2, -1 }, 3)] // ends with negative, sub-total does not cross zero
+        [InlineData(new[] { 1, 2, -1, 2 }, 4)]// negative in middle, sub-total does not cross zero
+        [InlineData(new[] { -2, 1, -3, 4, -1, 2, 1, -5, 4 }, 6)] // has negatives, and sub-total crosses zero
+        public void Test(int[] input, int expected)
         {
-            Assert.Equal(expected, signature(input));
+            Assert.Equal(expected, MaxSubArray(input));
         }
     }
 }

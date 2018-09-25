@@ -1,14 +1,14 @@
-﻿
-namespace Sample
+﻿namespace Sample
 {
-    using System.Collections.Generic;
     using Tests;
 
     namespace Sample
     {
-        public class ValidateBrackets : ValidateBracketsTest
+        using System.Collections.Generic;
+
+        public class Validate_Brackets : ValidateBracketsTest
         {
-            public override bool BracketsAreValid(string input)
+            public override bool ValidateBrackets(string input)
             {
                 var openers = "[{(<";
                 var closers = "]})>";
@@ -46,9 +46,11 @@ namespace Sample
 
     namespace Sample2
     {
-        public class ValidateBrackets : ValidateBracketsTest
+        using System.Collections.Generic;
+
+        public class Validate_Brackets : ValidateBracketsTest
         {
-            public override bool BracketsAreValid(string input)
+            public override bool ValidateBrackets(string input)
             {
                 var openers = "[{(<";
                 var closers = "]})>";

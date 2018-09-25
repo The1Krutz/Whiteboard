@@ -7,7 +7,7 @@
         * []{}()<> are all valid.
         * ie: "{()}" should return true, but "{(})" should return false
         */
-        bool BracketsAreValid(string input);
+        bool ValidateBrackets(string input);
     }
 }
 
@@ -18,7 +18,7 @@ namespace Tests
 
     public abstract class ValidateBracketsTest : IValidateBrackets
     {
-        public abstract bool BracketsAreValid(string inString);
+        public abstract bool ValidateBrackets(string input);
 
         [Theory]
         /**
@@ -51,7 +51,7 @@ namespace Tests
         [InlineData("([]{}<>", false)] // extra opening character
         public void Test(string initial, bool expected)
         {
-            var result = BracketsAreValid(initial);
+            var result = ValidateBrackets(initial);
 
             Assert.Equal(expected, result);
         }

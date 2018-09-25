@@ -1,19 +1,18 @@
-﻿
-namespace Sample
+﻿namespace Sample
 {
-    using Questions;
-    using System.Collections.Generic;
     using Tests;
 
     namespace Sample
     {
-        public class CharacterCount : CharacterCountTest
+        using System.Collections.Generic;
+
+        public class Character_Count : CharacterCountTest
         {
-            public override Dictionary<char, int> GetCharacterCount(string inString)
+            public override Dictionary<char, int> CharacterCount(string input)
             {
                 var temp = new Dictionary<char, int>();
 
-                foreach (var c in inString)
+                foreach (var c in input)
                 {
                     if (temp.ContainsKey(c))
                     {
