@@ -49,6 +49,7 @@ namespace Tests
         [InlineData("[<(>)]", false)] // right number, wrong nesting
         [InlineData("{}<>()]", false)] // extra closing character
         [InlineData("([]{}<>", false)] // extra opening character
+        [InlineData("(*", false)] // char code thingy? 
         public void Test(string initial, bool expected)
         {
             var result = ValidateBrackets(initial);
