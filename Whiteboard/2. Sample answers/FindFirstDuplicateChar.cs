@@ -46,4 +46,26 @@
             }
         }
     }
+
+    namespace Sample3
+    {
+        public class Find_First_Duplicate_Char : FindFirstDuplicateCharTest
+        {
+            public override string FindFirstDuplicateChar(string input)
+            {
+                var temp = "";
+
+                foreach (var t in input)
+                {
+                    if (temp.Contains(t))
+                    {
+                        return t.ToString();
+                    }
+                    temp += t;
+                }
+
+                return "";
+            }
+        }
+    }
 }
