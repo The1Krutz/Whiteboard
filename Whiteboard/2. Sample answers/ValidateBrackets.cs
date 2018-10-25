@@ -1,85 +1,76 @@
 ﻿namespace Sample
 {
+    using System.Collections.Generic;
     using Tests;
 
-    namespace Sample
+    public class Validate_Brackets_1 : ValidateBracketsTest
     {
-        using System.Collections.Generic;
-
-        public class Validate_Brackets : ValidateBracketsTest
+        public override bool ValidateBrackets(string input)
         {
-            public override bool ValidateBrackets(string input)
+            var openers = "[{(<";
+            var closers = "]})>";
+
+            var nesting = new Stack<char>();
+
+            foreach (var currentChar in input)
             {
-                var openers = "[{(<";
-                var closers = "]})>";
-
-                var nesting = new Stack<char>();
-
-                foreach (var currentChar in input)
+                if (openers.Contains(currentChar))
                 {
-                    if (openers.Contains(currentChar))
+                    // add opening brackets to the stack for later
+                    nesting.Push(currentChar);
+                }
+                else if (closers.Contains(currentChar))
+                {
+                    if (nesting.Count == 0)
                     {
-                        // add opening brackets to the stack for later
-                        nesting.Push(currentChar);
+                        return false;
                     }
-                    else if (closers.Contains(currentChar))
+                    var open = nesting.Pop();
+                    if (open == '[' && currentChar != ']'
+                        || open == '{' && currentChar != '}'
+                        || open == '(' && currentChar != ')'
+                        || open == '<' && currentChar != '>')
                     {
-                        if (nesting.Count == 0)
-                        {
-                            return false;
-                        }
-                        var open = nesting.Pop();
-                        if (open == '[' && currentChar != ']'
-                            || open == '{' && currentChar != '}'
-                            || open == '(' && currentChar != ')'
-                            || open == '<' && currentChar != '>')
-                        {
-                            return false;
-                        }
+                        return false;
                     }
                 }
-
-                return nesting.Count == 0;
             }
+
+            return nesting.Count == 0;
         }
     }
 
-    namespace Sample2
+    public class Validate_Brackets_2 : ValidateBracketsTest
     {
-        using System.Collections.Generic;
-
-        public class Validate_Brackets : ValidateBracketsTest
+        public override bool ValidateBrackets(string input)
         {
-            public override bool ValidateBrackets(string input)
+            var openers = "[{(<";
+            var closers = "]})>";
+
+            var nesting = new Stack<char>();
+
+            foreach (var currentChar in input)
             {
-                var openers = "[{(<";
-                var closers = "]})>";
-
-                var nesting = new Stack<char>();
-
-                foreach (var currentChar in input)
+                if (openers.Contains(currentChar))
                 {
-                    if (openers.Contains(currentChar))
+                    // add opening brackets to the stack for later
+                    nesting.Push(currentChar);
+                }
+                else if (closers.Contains(currentChar))
+                {
+                    if (nesting.Count == 0)
                     {
-                        // add opening brackets to the stack for later
-                        nesting.Push(currentChar);
+                        return false;
                     }
-                    else if (closers.Contains(currentChar))
+                    var open = nesting.Pop();
+                    if (openers.IndexOf(open) != closers.IndexOf(currentChar))
                     {
-                        if (nesting.Count == 0)
-                        {
-                            return false;
-                        }
-                        var open = nesting.Pop();
-                        if (openers.IndexOf(open) != closers.IndexOf(currentChar))
-                        {
-                            return false;
-                        }
+                        return false;
                     }
                 }
-
-                return nesting.Count == 0;
             }
+
+            return nesting.Count == 0;
         }
     }
 }

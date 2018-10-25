@@ -2,24 +2,21 @@
 {
     using Tests;
 
-    namespace Sample
+    public class Remove_Character : RemoveCharacterTest
     {
-        public class Remove_Character : RemoveCharacterTest
+        public override string RemoveCharacter(string input, char remove)
         {
-            public override string RemoveCharacter(string input, char remove)
+            var temp = "";
+
+            foreach (var c in input)
             {
-                var temp = "";
-
-                foreach (var c in input)
+                if (c != remove)
                 {
-                    if (c != remove)
-                    {
-                        temp += c;
-                    }
+                    temp += c;
                 }
-
-                return temp;
             }
+
+            return temp;
         }
     }
 }

@@ -1,44 +1,35 @@
 ﻿namespace Sample
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using Tests;
 
-    namespace Sample
+    public class Array_Intersection_1 : ArrayIntersectionTest
     {
-        using System.Collections.Generic;
-
-        public class Array_Intersection : ArrayIntersectionTest
+        public override IEnumerable<int> ArrayIntersection(int[] input1, int[] input2)
         {
-            public override IEnumerable<int> ArrayIntersection(int[] input1, int[] input2)
-            {
-                var temp = new List<int>();
+            var temp = new List<int>();
 
-                foreach (var i in input1)
+            foreach (var i in input1)
+            {
+                foreach (var j in input2)
                 {
-                    foreach (var j in input2)
+                    if (i == j && !temp.Contains(i))
                     {
-                        if (i == j && !temp.Contains(i))
-                        {
-                            temp.Add(i);
-                        }
+                        temp.Add(i);
                     }
                 }
-
-                return temp;
             }
+
+            return temp;
         }
     }
 
-    namespace Sample2
+    public class Array_Intersection_2 : ArrayIntersectionTest
     {
-        using System.Collections.Generic;
-        using System.Linq;
-
-        public class Array_Intersection : ArrayIntersectionTest
+        public override IEnumerable<int> ArrayIntersection(int[] input1, int[] input2)
         {
-            public override IEnumerable<int> ArrayIntersection(int[] input1, int[] input2)
-            {
-                return input1.Intersect(input2).Distinct();
-            }
+            return input1.Intersect(input2).Distinct();
         }
     }
 }

@@ -1,71 +1,61 @@
 ﻿namespace Sample
 {
+    using System.Collections.Generic;
     using Tests;
 
-    namespace Sample
+    public class Find_First_Duplicate_Char_1 : FindFirstDuplicateCharTest
     {
-        public class Find_First_Duplicate_Char : FindFirstDuplicateCharTest
+        public override string FindFirstDuplicateChar(string input)
         {
-            public override string FindFirstDuplicateChar(string input)
+            for (var i = 0; i < input.Length; i++)
             {
-                for (var i = 0; i < input.Length; i++)
+                for (var j = 0; j < i; j++)
                 {
-                    for (var j = 0; j < i; j++)
+                    if (input[j] == input[i])
                     {
-                        if (input[j] == input[i])
-                        {
-                            return input[j].ToString();
-                        }
+                        return input[j].ToString();
                     }
                 }
-
-                return "";
             }
+
+            return "";
         }
     }
 
-    namespace Sample2
+    public class Find_First_Duplicate_Char_2 : FindFirstDuplicateCharTest
     {
-        using System.Collections.Generic;
-
-        public class Find_First_Duplicate_Char : FindFirstDuplicateCharTest
+        public override string FindFirstDuplicateChar(string input)
         {
-            public override string FindFirstDuplicateChar(string input)
+            var temp = new HashSet<char>();
+
+            foreach (var t in input)
             {
-                var temp = new HashSet<char>();
-
-                foreach (var t in input)
+                if (!temp.Add(t))
                 {
-                    if (!temp.Add(t))
-                    {
-                        return t.ToString();
-                    }
+                    return t.ToString();
                 }
-
-                return "";
             }
+
+            return "";
         }
     }
 
-    namespace Sample3
+    public class Find_First_Duplicate_Char_3 : FindFirstDuplicateCharTest
     {
-        public class Find_First_Duplicate_Char : FindFirstDuplicateCharTest
+        public override string FindFirstDuplicateChar(string input)
         {
-            public override string FindFirstDuplicateChar(string input)
+            var temp = "";
+
+            foreach (var t in input)
             {
-                var temp = "";
-
-                foreach (var t in input)
+                if (temp.Contains(t))
                 {
-                    if (temp.Contains(t))
-                    {
-                        return t.ToString();
-                    }
-                    temp += t;
+                    return t.ToString();
                 }
-
-                return "";
+                temp += t;
             }
+
+            return "";
         }
     }
 }

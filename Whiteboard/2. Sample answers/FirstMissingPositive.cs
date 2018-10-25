@@ -1,55 +1,48 @@
 ﻿namespace Sample
 {
+    using System.Linq;
     using Tests;
 
-    namespace Sample
+    public class First_Missing_Positive_1 : FirstMissingPositiveTest
     {
-        public class First_Missing_Positive : FirstMissingPositiveTest
+        public override int FirstMissingPositive(int[] input)
         {
-            public override int FirstMissingPositive(int[] input)
+            var temp = 1;
+
+            while (true)
             {
-                var temp = 1;
-
-                while (true)
+                var flag = false;
+                foreach (var i in input)
                 {
-                    var flag = false;
-                    foreach (var i in input)
+                    if (!flag && i == temp)
                     {
-                        if (!flag && i == temp)
-                        {
-                            flag = true;
-                        }
+                        flag = true;
                     }
-
-                    if (!flag)
-                    {
-                        return temp;
-                    }
-
-                    temp++;
                 }
+
+                if (!flag)
+                {
+                    return temp;
+                }
+
+                temp++;
             }
         }
     }
 
-    namespace Sample2
+    public class First_Missing_Positive_2 : FirstMissingPositiveTest
     {
-        using System.Linq;
-
-        public class First_Missing_Positive : FirstMissingPositiveTest
+        public override int FirstMissingPositive(int[] input)
         {
-            public override int FirstMissingPositive(int[] input)
+            var temp = input.ToList();
+            var i = 1;
+
+            while (temp.Contains(i))
             {
-                var temp = input.ToList();
-                var i = 1;
-
-                while (temp.Contains(i))
-                {
-                    i++;
-                }
-
-                return i;
+                i++;
             }
+
+            return i;
         }
     }
 }

@@ -2,27 +2,24 @@
 {
     using Tests;
 
-    namespace Sample
+    public class Check_Unique_Characters : CheckUniqueCharactersTest
     {
-        public class Check_Unique_Characters : CheckUniqueCharactersTest
+        public override bool CheckUniqueCharacters(string input)
         {
-            public override bool CheckUniqueCharacters(string input)
-            {
-                string buffer = "";
+            string buffer = "";
 
-                foreach (char c in input)
+            foreach (char c in input)
+            {
+                if (buffer.Contains(c))
                 {
-                    if (buffer.Contains(c))
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        buffer += c;
-                    }
+                    return false;
                 }
-                return true;
+                else
+                {
+                    buffer += c;
+                }
             }
+            return true;
         }
     }
 }
