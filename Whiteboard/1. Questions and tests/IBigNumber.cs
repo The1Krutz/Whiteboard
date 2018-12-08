@@ -64,7 +64,7 @@ namespace Tests
             Assert.Equal(expected, Add(left, right));
         }
 
-        [Theory(Skip ="not implemented yet")]
+        [Theory(Skip = "not implemented yet")]
         [MemberData(nameof(Data_Divide))]
         public void Test_Divide(string left, string right, string expected)
         {
