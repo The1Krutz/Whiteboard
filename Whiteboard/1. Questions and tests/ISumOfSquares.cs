@@ -9,7 +9,7 @@ namespace Questions
          * Given a non-negative integer c, return a list of all possible combinations of numbers a and b such that a^2 + b^2 = c.
          * ie: 5 returns <1,2> because 1^2 + 2^2 = 1 + 4 = 5
          */
-        IEnumerable<Tuple<int, int>> SumOfSquares(int c);
+        IEnumerable<(int a, int b)> SumOfSquares(int c);
     }
 }
 
@@ -21,22 +21,22 @@ namespace Tests
 
     public abstract class SumOfSquaresTest : ISumOfSquares
     {
-        public abstract IEnumerable<Tuple<int, int>> SumOfSquares(int c);
+        public abstract IEnumerable<(int a, int b)> SumOfSquares(int c);
 
-        public static TheoryData<int, IEnumerable<Tuple<int, int>>> Data =>
-            new TheoryData<int, IEnumerable<Tuple<int, int>>>
+        public static TheoryData<int, IEnumerable<(int a, int b)>> Data =>
+            new TheoryData<int, IEnumerable<(int a, int b)>>
                 {
-                    { 5, new List<Tuple<int, int>>{ Tuple.Create(1,2) }},
-                    { 25,new List<Tuple<int, int>>{
-                        Tuple.Create(3,4), // 9 + 16 = 25
-                        Tuple.Create(0,5)  // 0 + 25 = 25
+                    { 5, new List<(int a, int b)>{ (1,2) }},
+                    { 25,new List<(int a, int b)>{
+                        (3,4), // 9 + 16 = 25
+                        (0,5)  // 0 + 25 = 25
                     } },
-                    { 7, new List<Tuple<int, int>>{ }}
+                    { 7, new List<(int a, int b)>{ }}
                 };
 
         [Theory]
         [MemberData(nameof(Data))]
-        public void Test(int input, IEnumerable<Tuple<int, int>> expected)
+        public void Test(int input, IEnumerable<(int a, int b)> expected)
         {
             var result = SumOfSquares(input).ToList();
 
