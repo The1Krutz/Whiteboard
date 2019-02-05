@@ -6,14 +6,14 @@
 
     public class Sum_Of_Squares : SumOfSquaresTest
     {
-        public override IEnumerable<Tuple<int, int>> SumOfSquares(int input)
+        public override IEnumerable<(int a, int b)> SumOfSquares(int input)
         {
             if (input < 0)
             {
                 throw new ArgumentOutOfRangeException();
             }
 
-            var returning = new List<Tuple<int, int>>();
+            var returning = new List<(int a, int b)>();
             int maxAb = (int)(Math.Sqrt(input) + 1);
 
             for (int i = 0; i < maxAb; i++)
@@ -22,7 +22,7 @@
                 {
                     if (i * i + j * j == input)
                     {
-                        returning.Add(Tuple.Create(i, j));
+                        returning.Add((i, j));
                     }
                 }
             }
