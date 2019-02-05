@@ -2,6 +2,11 @@
 
 namespace Questions
 {
+    /**
+     * honestly I think this is too complicated for a whiteboard question.
+     * setting aside the fact that it's actually a question I got during my interview...
+     * the answer I gave (and that I think he was expecting) was a lot less "hard code" and a lot more "describe what you would do"
+     */
     public interface IHtmlParsingPart
     {
         /**
