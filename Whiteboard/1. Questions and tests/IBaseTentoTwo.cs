@@ -3,8 +3,8 @@
     public interface IBaseTentoTwo
     {
         /**
-         * Given two strings s and t, write a function to determine if t is an anagram of s.
-         * ie: 'rat' and 'car' returns false, 'rat' and 'tar' returns true
+         * Given an integer in base 10, convert it to base 2 (in a string for convenience)
+         * ie: 5 should return "101"
          */
         string BaseTentoTwo(int input);
     }
