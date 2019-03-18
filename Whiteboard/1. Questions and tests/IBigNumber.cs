@@ -71,7 +71,7 @@ namespace Tests
             Assert.Equal(expected, Divide(left, right));
         }
 
-        [Theory(Skip = "not implemented yet")]
+        [Theory]
         [MemberData(nameof(Data_Multiply))]
         public void Test_Multiply(string left, string right, string expected)
         {

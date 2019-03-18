@@ -12,7 +12,7 @@
             Stack<int> right_reversed = new Stack<int>();
 
             foreach (var c in left)
-            { 
+            {
                 left_reversed.Push(int.Parse(c.ToString()));
             }
             foreach (var c in right)
@@ -39,18 +39,15 @@
 
                     tempSum = innerLeft + innerRight;
 
-                    if (tempSum >= 10)
+                    int tempCarry = 0;
+                    while (tempSum >= 10)
                     {
                         tempSum -= 10;
-                        addMe = tempSum + carry;
+                        tempCarry += 1;
+                    }
+                    addMe = tempSum + carry;
+                    carry = tempCarry;
 
-                        carry = 1;
-                    }
-                    else
-                    {
-                        addMe = tempSum + carry;
-                        carry = 0;
-                    }
                     returning = returning.Insert(0, addMe.ToString());
                 }
                 else
@@ -60,16 +57,6 @@
             }
 
             return returning;
-        }
-
-        public override string Divide(string top, string bottom)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override string Multiply(string left, string right)
-        {
-            throw new System.NotImplementedException();
         }
 
         public override string Subtract(string left, string right)
@@ -127,6 +114,39 @@
             }
 
             return returning.TrimStart('0');
+        }
+
+        public override string Multiply(string left, string right)
+        {
+            List<string> addlist = new List<string>();
+
+            string rightzeros = "";
+            for (int i = right.Length - 1; i >= 0; i--)
+            {
+                string leftzeros = "";
+                for (int j = left.Length - 1; j >= 0; j--)
+                {
+                    addlist.Add(
+                        (int.Parse(right[i].ToString() + rightzeros)
+                        * int.Parse(left[j].ToString())
+                        ).ToString() + leftzeros);
+                    leftzeros += "0";
+                }
+                rightzeros += "0";
+            }
+
+            string total = "";
+            foreach (string adding in addlist)
+            {
+                total = Add(total, adding);
+            }
+
+            return total;
+        }
+
+        public override string Divide(string top, string bottom)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

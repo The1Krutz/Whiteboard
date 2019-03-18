@@ -7,9 +7,23 @@
     {
         public override int Division(int numerator, int denominator)
         {
-            if (numerator < 0 || denominator <= 0)
+            if (denominator == 0)
             {
-                throw new ArgumentException();
+                throw new ArgumentException("cannot divide by zero");
+            }
+
+            int negativeCount = 0;
+
+            if (numerator < 0)
+            {
+                numerator *= -1;
+                negativeCount++;
+            }
+
+            if (denominator < 0)
+            {
+                denominator *= -1;
+                negativeCount++;
             }
 
             int returning = 0;
@@ -20,7 +34,7 @@
                 returning++;
             }
 
-            return returning;
+            return returning * (negativeCount % 2 == 0 ? 1 : -1);
         }
     }
 }

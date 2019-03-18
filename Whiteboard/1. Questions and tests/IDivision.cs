@@ -12,6 +12,7 @@
 
 namespace Tests
 {
+    using System;
     using Questions;
     using Xunit;
 
@@ -20,21 +21,29 @@ namespace Tests
         public abstract int Division(int numerator, int denominator);
 
         [Theory]
-        // divide evenly
+        // positive, divide evenly
         [InlineData(4, 1, 4)]
         [InlineData(2, 2, 1)]
         [InlineData(9, 3, 3)]
-        // don't divide evenly
+        // positive, don't divide evenly
         [InlineData(7, 3, 2)]
         [InlineData(4, 3, 1)]
         [InlineData(5, 2, 2)]
+        // one negative
+        [InlineData(-4, 1, -4)]
+        [InlineData(7, -3, -2)]
+        // two negative
+        [InlineData(-4, -1, 4)]
+        [InlineData(-7, -3, 2)]
         public void Test(int numerator, int denominator, int expected)
         {
             Assert.Equal(expected, Division(numerator, denominator));
         }
 
-        /**
-         * add some failure cases for negative numbers and zero
-         */
+        [Fact]
+        public void Test_DivideByZero()
+        {
+            Assert.Throws<ArgumentException>(() => Division(2, 0));
+        }
     }
 }
